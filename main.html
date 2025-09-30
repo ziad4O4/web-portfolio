@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cybersecurity Expert: Web App Pentester Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        /* Reset and Basic Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: #e6f0fa;
+            color: #1a1a1a;
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            background: #2b2d42;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 15px 0;
+            align-items: center;
+        }
+
+        nav ul li {
+            margin: 0 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1em;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #f67280;
+        }
+
+        nav .resume-button {
+            background: linear-gradient(45deg, #f67280, #c06c84);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-size: 1em;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        nav .resume-button:hover {
+            background: linear-gradient(45deg, #c06c84, #f67280);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, #2b2d42, #8d5524, #c06c84, #f67280);
+            color: white;
+            text-align: center;
+            padding: 120px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255,255,255,0.2), transparent);
+            opacity: 0.3;
+        }
+
+        header canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.15;
+            z-index: 0;
+        }
+
+        header h1 {
+            font-size: 3.5em;
+            margin-bottom: 15px;
+            animation: slideInLeft 1s ease-out;
+            position: relative;
+            z-index: 1;
+        }
+
+        header p {
+            font-size: 1.6em;
+            margin-bottom: 25px;
+            animation: slideInRight 1s ease-out 0.3s;
+            animation-fill-mode: backwards;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Call-to-Action Button */
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #f67280, #c06c84);
+            color: white;
+            padding: 15px 35px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.2em;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(45deg, #c06c84, #f67280);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        /* About Section */
+        .about-section {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            margin-bottom: 40px;
+            transition: transform 0.3s ease;
+        }
+
+        .about-section:hover {
+            transform: translateY(-5px);
+        }
+
+        .about-section h2 {
+            font-size: 2.5em;
+            color: #2b2d42;
+            margin-bottom: 15px;
+            border-bottom: 3px solid #f67280;
+            display: inline-block;
+        }
+
+        .about-section .description {
+            font-size: 1.1em;
+            color: #444;
+            margin-bottom: 20px;
+        }
+
+        /* Projects Section */
+        .projects-section {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            margin-bottom: 40px;
+        }
+
+        .projects-section h2 {
+            font-size: 2.5em;
+            color: #2b2d42;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #f67280;
+            display: inline-block;
+        }
+
+        .project-detail {
+            background: #f8f9fa;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            transition: background 0.3s ease;
+        }
+
+        .project-detail summary {
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            list-style: none;
+            position: relative;
+            padding-right: 20px;
+        }
+
+        .project-detail summary::after {
+            content: '+';
+            position: absolute;
+            right: 0;
+            top: 0;
+            font-size: 1.5em;
+        }
+
+        .project-detail[open] summary::after {
+            content: '-';
+        }
+
+        .project-expanded {
+            margin-top: 10px;
+            font-size: 1em;
+            color: #444;
+        }
+
+        .project-link {
+            display: inline-block;
+            background: linear-gradient(45deg, #8d5524, #c06c84);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 25px;
+            text-decoration: none;
+            margin-top: 10px;
+            transition: transform 0.2s ease;
+        }
+
+        .project-link:hover {
+            transform: scale(1.05);
+        }
+
+        /* Skills Section */
+        .skills-section {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            margin-bottom: 40px;
+        }
+
+        .skills-section h2 {
+            font-size: 2.5em;
+            color: #2b2d42;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #f67280;
+            display: inline-block;
+        }
+
+        .badge {
+            display: inline-block;
+            background: linear-gradient(45deg, #8d5524, #c06c84);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 25px;
+            font-size: 1em;
+            margin: 5px;
+            transition: transform 0.2s ease;
+        }
+
+        .badge:hover {
+            transform: scale(1.1);
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            margin-bottom: 40px;
+        }
+
+        .contact-section h2 {
+            font-size: 2.5em;
+            color: #2b2d42;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #f67280;
+            display: inline-block;
+        }
+
+        .contact-section ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .contact-section li {
+            font-size: 1.1em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-section i {
+            color: #f67280;
+            margin-right: 10px;
+            font-size: 1.3em;
+            transition: transform 0.2s ease;
+        }
+
+        .contact-section li:hover i {
+            transform: scale(1.1);
+        }
+
+        .contact-section a {
+            color: #f67280;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .contact-section a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #2b2d42, #8d5524);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 1em;
+        }
+
+        footer a {
+            color: #f67280;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Animations */
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.15; }
+            50% { opacity: 0.25; }
+            100% { opacity: 0.15; }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5em;
+            }
+
+            header p {
+                font-size: 1.3em;
+            }
+
+            .about-section h2,
+            .projects-section h2,
+            .skills-section h2,
+            .contact-section h2 {
+                font-size: 2em;
+            }
+
+            .cta-button {
+                padding: 12px 25px;
+                font-size: 1em;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                text-align: center;
+            }
+
+            nav ul li {
+                margin: 10px 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 80px 15px;
+            }
+
+            .container {
+                padding: 30px 15px;
+            }
+
+            .about-section,
+            .projects-section,
+            .skills-section,
+            .contact-section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="D:\protofolio\Ziad_resume.pdf" target="_blank" class="resume-button">Resume</a></li>
+        </ul>
+    </nav>
+
+    <header id="home">
+        <canvas id="fingerprintCanvas"></canvas>
+        <h1>I'm Your Next Cybersecurity Pentester</h1>
+        <p>Specializing in Web App Penetration Testing</p>
+        <a href="mailto:zeiadsakr44@gmail.com" class="cta-button">Hire Me Today!</a>
+    </header>
+
+    <div class="container">
+        <section class="about-section" id="about">
+            <h2>About Me</h2>
+            <div class="description">
+                I'm a dedicated Cybersecurity Pentester with a passion for securing web applications. With extensive experience in penetration testing, I identify and mitigate vulnerabilities to protect digital assets. My expertise lies in uncovering hidden threats and ensuring robust security for web platforms. I'm eager to join a forward-thinking team to tackle complex challenges and drive innovation in cybersecurity.
+            </div>
+        </section>
+
+        <section class="projects-section" id="projects">
+            <h2>My Projects</h2>
+            <details class="project-detail">
+                <summary class="project-summary">Conducted comprehensive penetration testing for a leading e-commerce platform, identifying and resolving critical SQL injection and XSS vulnerabilities.</summary>
+                <div class="project-expanded">
+                    <p>This project involved a thorough security assessment of an e-commerce site handling millions of transactions. I used tools like Burp Suite and OWASP ZAP to scan for vulnerabilities, simulated attacks, and provided detailed reports with remediation steps. The result was a 70% reduction in potential exploit risks.</p>
+                    <a href="https://github.com/yourusername/ecommerce-pentest" target="_blank" class="project-link">View Code on GitHub</a>
+                </div>
+            </details>
+            <details class="project-detail">
+                <summary class="project-summary">Developed a custom web app security audit tool using Python, streamlining vulnerability assessments for clients.</summary>
+                <div class="project-expanded">
+                    <p>Built from scratch, this tool automates common pentesting tasks such as scanning for common vulnerabilities, generating reports, and integrating with CI/CD pipelines. It's open-source and has been adopted by several security teams for its efficiency.</p>
+                    <a href="https://github.com/yourusername/security-audit-tool" target="_blank" class="project-link">View Code on GitHub</a>
+                </div>
+            </details>
+            <details class="project-detail">
+                <summary class="project-summary">Led a red-team exercise for a financial institution’s online banking system, enhancing its security posture against advanced threats.</summary>
+                <div class="project-expanded">
+                    <p>As the lead, I coordinated a team to simulate real-world attacks, including social engineering and network breaches. The exercise uncovered several critical issues, leading to immediate patches and long-term security improvements.</p>
+                    <a href="https://github.com/yourusername/red-team-exercise" target="_blank" class="project-link">View Code on GitHub</a>
+                </div>
+            </details>
+        </section>
+
+        <section class="skills-section" id="skills">
+            <h2>My Skills</h2>
+            <div class="skills">
+                <span class="badge">Penetration Testing</span>
+                <span class="badge">Web Application Security</span>
+                <span class="badge">Ethical Hacking</span>
+                <span class="badge">SQL Injection Mitigation</span>
+                <span class="badge">Cross-Site Scripting (XSS) Prevention</span>
+            </div>
+        </section>
+
+        <section class="contact-section" id="contact">
+            <h2>Contact Me</h2>
+            <ul>
+                <li><i class="fas fa-envelope"></i> <a href="mailto:zeiadsakr44@gmail.com">zeiadsakr44@gmail.com</a></li>
+                <li><i class="fas fa-phone"></i> <a href="tel:+201064460423">+201064460423</a></li>
+                <li><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/ziad4o4" target="_blank">linkedin.com/in/ziad4o4</a></li>
+                <li><i class="fab fa-github"></i> <a href="https://github.com/ziad4o4" target="_blank">github.com/ziad4o4</a></li>
+                <li><i class="fas fa-map-marker-alt"></i>Cairo</li>
+
+            </ul>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Ziad's Portfolio. All rights reserved. | Contact me at <a href="mailto:zeiadsakr44@gmail.com">zeiadsakr44@gmail.com</a></p>
+    </footer>
+
+    <script>
+        // Fingerprint Animation
+        const canvas = document.getElementById('fingerprintCanvas');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = canvas.parentElement.offsetHeight;
+        }
+
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        function drawFingerprint() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.strokeStyle = 'rgba(246, 114, 128, 0.5)';
+            ctx.lineWidth = 2;
+
+            const centerX = canvas.width / 2;
+            const centerY = canvas.height / 2;
+            const maxRadius = Math.min(canvas.width, canvas.height) / 4;
+
+            for (let r = 20; r < maxRadius; r += 20) {
+                ctx.beginPath();
+                ctx.ellipse(centerX, centerY, r, r * 0.7, Math.PI / 4, 0, Math.PI * 2);
+                ctx.stroke();
+            }
+
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, 10, 0, Math.PI * 2);
+            ctx.fillStyle = 'rgba(246, 114, 128, 0.3)';
+            ctx.fill();
+        }
+
+        function animate() {
+            canvas.style.animation = 'pulse 3s infinite';
+            drawFingerprint();
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+    </script>
+</body>
+</html>
